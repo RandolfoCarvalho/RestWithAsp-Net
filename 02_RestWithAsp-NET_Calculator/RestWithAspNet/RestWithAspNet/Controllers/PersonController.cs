@@ -33,7 +33,7 @@ namespace RestWithAspNet.Controllers
             {
                 return NotFound("Usuario não encontrado na base de dados");
             }
-            return Ok();
+            return Ok(person);
         }
         [HttpPost]
         //converte o que vier no body em um tipo "Person"
