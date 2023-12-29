@@ -1,4 +1,5 @@
-﻿using RestWithAspNet.Model;
+﻿using RestWithAspNet.Data;
+using RestWithAspNet.Model;
 using System.Security.Cryptography;
 
 namespace RestWithAspNet.Services.Implementations
@@ -6,7 +7,13 @@ namespace RestWithAspNet.Services.Implementations
     public class PersonServiceImplementation : IPersonService
     {
 
+        private MysqlContext _context;
+
         private volatile int count;
+        public PersonServiceImplementation(MysqlContext context) 
+        {
+            _context = context;
+        }
 
         public Person Create(Person person)
         {
@@ -17,23 +24,17 @@ namespace RestWithAspNet.Services.Implementations
         {
            
         }
-
         public List<Person> FindAll()
         {
-            List<Person> people = new List<Person>();
-            for (int i = 0; i < 8; i++)
-            {
-                Person person = MockPerson(i);
-                people.Add(person);
-            }
-            return people;
+            //por questões de legibilidade ficará "persons"
+            return _context.Persons.ToList();
         }
         public Person FindById(long id)
         {
             //logica para puxar do banco de dados
             return new Person
             {
-                Id = IncrementAndGet(),
+                Id = 1,
                 FirstName = "Randolfo",
                 LastName = "Irades",
                 Adress = "Catalao - Goias Brasil",
@@ -45,23 +46,6 @@ namespace RestWithAspNet.Services.Implementations
         {
             //logica para atualizar
             return person;
-        }
-
-        private Person MockPerson(int i)
-        {
-            return new Person
-            {
-                Id = IncrementAndGet(),
-                FirstName = "Person Name" + i,
-                LastName = "Person LastName" + i,
-                Adress = "Some Adress" + i,
-                Gender = "Male"
-            };
-        }
-
-        private long IncrementAndGet()
-        {
-            return Interlocked.Increment(ref count);
         }
     }
 }

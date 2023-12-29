@@ -50,3 +50,9 @@ C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\Re
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\obj\Debug\net7.0\RestWithAspNet.pdb
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\obj\Debug\net7.0\RestWithAspNet.genruntimeconfig.cache
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\obj\Debug\net7.0\ref\RestWithAspNet.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\MySqlConnector.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\obj\Debug\net7.0\RestWithAspNet.csproj.CopyComplete
