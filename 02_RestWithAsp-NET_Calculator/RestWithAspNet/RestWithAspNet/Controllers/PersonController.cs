@@ -1,88 +1,67 @@
 using Microsoft.AspNetCore.Mvc;
+using RestWithAspNet.Model;
+using RestWithAspNet.Services;
 using System.Globalization;
 namespace RestWithAspNet.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class CalculatorController : ControllerBase
+    [Route("api/[controller]")]
+    public class PersonController : ControllerBase
     {
-        private readonly ILogger<CalculatorController> _logger;
-        public CalculatorController(ILogger<CalculatorController> logger)
+        private readonly ILogger<PersonController> _logger;
+        private readonly IPersonService _personService;
+
+
+        public PersonController(ILogger<PersonController> logger, IPersonService personService)
         {
             _logger = logger;
+            _personService = personService;
         }
 
-        [HttpGet("sum/{firstNumber}/{SecondNumber}")]
-        public IActionResult Get(string firstNumber, string secondNumber)
+        [HttpGet]
+        public IActionResult Get()
         {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var sum = Convert.ToDecimal(firstNumber) + Convert.ToDecimal(secondNumber);
-                return Ok(sum.ToString());
-            }
+            return Ok(_personService.FindAll());
 
-            return BadRequest("Nâo foi possivel obter a soma");
         }
-        [HttpGet("sub/{firstNumber}/{SecondNumber}")]
-        public IActionResult Sub(string firstNumber, string secondNumber)
+        //O id será recebido na requisição, assim diferenciando as duas funções Get
+        [HttpGet("{id}")]
+        public IActionResult Get(long id)
         {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            var person = _personService.FindById(id);
+            if(person == null)
             {
-                var sub = Convert.ToDecimal(firstNumber) - Convert.ToDecimal(secondNumber);
-                return Ok(sub.ToString());
+                return NotFound("Usuario não encontrado na base de dados");
             }
-            return BadRequest("Nao foi possivel obter a subtração");
+            return Ok(person);
         }
-        [HttpGet("mult/{firstNumber}/{secondNumber}")] 
-        public IActionResult Mult(string firstNumber, string secondNumber)
+        [HttpPost]
+        //converte o que vier no body em um tipo "Person"
+        public IActionResult Post([FromBody] Person person)
         {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            
+            if (person == null)
             {
-                var mult = Convert.ToDecimal(firstNumber) * Convert.ToDecimal(secondNumber);
-                return Ok(mult.ToString());
+                return BadRequest();
             }
-            return BadRequest("Não foi possivel obter a Multiplicação");
+            return Ok(_personService.Create(person));
         }
-        [HttpGet("div/{firstNumber}/{secondNumber}")] 
-        public IActionResult Div(string firstNumber, string secondNumber)
-        {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var div = Convert.ToDecimal(firstNumber) / Convert.ToDecimal(secondNumber);
-                return Ok(div.ToString());
-            }
-            return BadRequest("Não foi possivel realizar a divisão");
-        }
-        [HttpGet("mean/{firstNumber}/{secondNumber}")]
-        public IActionResult Media(string firstNumber, string secondNumber)
-        {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var sum = (Convert.ToDecimal(firstNumber) + Convert.ToDecimal(secondNumber)) / 2;
-                return Ok(sum.ToString());
-            }
-            return BadRequest("Não foi possivel realizar a divisão");
-        }
+        [HttpPut]
 
-        [HttpGet("squareRoot/{firstNumber}")]
-        public IActionResult SquareRoot(string firstNumber)
+        public IActionResult Put([FromBody] Person person)
         {
-            if (IsNumeric(firstNumber))
-            {
-                var squareRoot = Math.Sqrt((double)Convert.ToDecimal(firstNumber));
-                return Ok(squareRoot.ToString());
-            }
-            return BadRequest("Não foi possivel calcular a raiz quadrada");
-        }
-        private bool IsNumeric(string strNumber)
-        {
-            double number;
-            bool isNumber = double.TryParse(strNumber, 
-                NumberStyles.Any, 
-                NumberFormatInfo.InvariantInfo, 
-                out number);
 
-            return isNumber;
+            if (person == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_personService.Update(person));
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            _personService.Delete(id);
+            return NoContent();
         }
     }
 }
