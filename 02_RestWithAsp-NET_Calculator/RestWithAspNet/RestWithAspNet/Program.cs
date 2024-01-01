@@ -17,7 +17,7 @@ builder.Services.AddDbContext<MysqlContext>(options => options.UseMySql(connecti
 
 //indejação de dependencia
 builder.Services.AddScoped<IPersonService, PersonServiceImplementation>();
-
+builder.Services.AddApiVersioning();
 
 var app = builder.Build();
 

@@ -10,7 +10,6 @@ namespace RestWithAspNet.Services.Implementations
 
         private MysqlContext _context;
 
-        private volatile int count;
         public PersonServiceImplementation(MysqlContext context) 
         {
             _context = context;

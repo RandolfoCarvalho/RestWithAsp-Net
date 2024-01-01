@@ -56,3 +56,7 @@ C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\Re
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\MySqlConnector.dll
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\obj\Debug\net7.0\RestWithAspNet.csproj.CopyComplete
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Asp.Versioning.Abstractions.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Asp.Versioning.Http.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\Asp.Versioning.Mvc.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\obj\Debug\net7.0\RestWithAspNet.MvcApplicationPartsAssemblyInfo.cs

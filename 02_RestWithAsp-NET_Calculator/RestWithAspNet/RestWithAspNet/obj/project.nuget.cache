@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "6L6ijvqZbyqZLrqxQruRokPSzvmcan9ux9haZgnL+dSx6mLyiRQLcPJb198d8Eby3NyfOcmjMyRphlS32rldDA==",
+  "dgSpecHash": "CBJG0hKeDUq+w6fxDynSUxE9b97nab0rmtW54govBirbv+F6rbnZGx84mbiptmOvyQkqejDSdMlYotsMakFFjQ==",
   "success": true,
   "projectFilePath": "C:\\temp\\projetos\\RestWithAsp-NET\\02_RestWithAsp-NET_Calculator\\RestWithAspNet\\RestWithAspNet\\RestWithAspNet.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\rando\\.nuget\\packages\\asp.versioning.abstractions\\7.0.0\\asp.versioning.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\rando\\.nuget\\packages\\asp.versioning.http\\7.0.0\\asp.versioning.http.7.0.0.nupkg.sha512",
+    "C:\\Users\\rando\\.nuget\\packages\\asp.versioning.mvc\\7.0.0\\asp.versioning.mvc.7.0.0.nupkg.sha512",
     "C:\\Users\\rando\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\rando\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.2\\microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
     "C:\\Users\\rando\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.2\\microsoft.entityframeworkcore.analyzers.7.0.2.nupkg.sha512",

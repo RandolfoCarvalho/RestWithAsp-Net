@@ -1,11 +1,14 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using RestWithAspNet.Model;
 using RestWithAspNet.Services;
-using System.Globalization;
+
+
 namespace RestWithAspNet.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonController : ControllerBase
     {
         private readonly ILogger<PersonController> _logger;
