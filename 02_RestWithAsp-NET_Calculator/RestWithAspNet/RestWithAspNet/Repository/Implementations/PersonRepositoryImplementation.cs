@@ -3,14 +3,14 @@ using RestWithAspNet.Model;
 using System;
 using System.Security.Cryptography;
 
-namespace RestWithAspNet.Services.Implementations
+namespace RestWithAspNet.Repository.Implementations
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonRepositoryImplementation : IPersonRepository
     {
 
         private MysqlContext _context;
 
-        public PersonServiceImplementation(MysqlContext context) 
+        public PersonRepositoryImplementation(MysqlContext context) 
         {
             _context = context;
         }
@@ -79,6 +79,10 @@ namespace RestWithAspNet.Services.Implementations
                     throw new Exception("Error" + e.Message);
                 }
             }
+        }
+        public bool Exists(long id)
+        {
+            return _context.Persons.Any(p => p.Id.Equals(id));
         }
         
     }

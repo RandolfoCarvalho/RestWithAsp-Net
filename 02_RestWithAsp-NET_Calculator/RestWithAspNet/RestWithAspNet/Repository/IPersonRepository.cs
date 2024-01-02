@@ -1,13 +1,16 @@
 ﻿using RestWithAspNet.Model;
 
-namespace RestWithAspNet.Services
+namespace RestWithAspNet.Repository
 {
-    public interface IPersonService
+    public interface IPersonRepository
     {
         Person Create(Person person);
         Person Update(Person person);
         Person FindById(long id);
         List<Person> FindAll();
         void Delete(long id);
+        bool Exists(long id);
+
     }
+
 }

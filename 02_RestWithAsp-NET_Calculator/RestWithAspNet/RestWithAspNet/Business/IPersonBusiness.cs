@@ -1,8 +1,8 @@
 ﻿using RestWithAspNet.Model;
 
-namespace RestWithAspNet.Services
+namespace RestWithAspNet.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
         Person Create(Person person);
         Person Update(Person person);

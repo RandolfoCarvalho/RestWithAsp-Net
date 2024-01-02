@@ -1,84 +1,47 @@
 ﻿using RestWithAspNet.Data;
 using RestWithAspNet.Model;
+using RestWithAspNet.Repository;
 using System;
 using System.Security.Cryptography;
 
-namespace RestWithAspNet.Services.Implementations
+namespace RestWithAspNet.Business.Implementations
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonBusinessImplementation : IPersonBusiness
     {
 
-        private MysqlContext _context;
+        private readonly IPersonRepository _repository;
 
-        public PersonServiceImplementation(MysqlContext context) 
+        public PersonBusinessImplementation(IPersonRepository repository) 
         {
-            _context = context;
+            _repository = repository;
         }
 
         public List<Person> FindAll()
         {
             //por questões de legibilidade ficará "persons"
-            return _context.Persons.ToList();
+            return _repository.FindAll();
         }
         public Person FindById(long id)
         {
 
             //logica para puxar do banco de dados
-            return _context.Persons.SingleOrDefault(p => p.Id == id);
+            return _repository.FindById(id);
 
         }
 
         public Person Create(Person person)
         {
-            try
-            {
-                _context.Add(person);
-                _context.SaveChanges();
-
-            } catch (Exception e)
-            {
-                throw new Exception("Error" + e.Message);
-            }
-            return person;
+            return _repository.Create(person);
         }
         public Person Update(Person person)
         {
-            bool exists = _context.Persons.Any(p => p.Id == person.Id);
-            if (!exists) return new Person();
-            //quando o id do banco de dados for igual o id do obj vamos buscar na base e armazenar em var
-            var result = _context.Persons.SingleOrDefault(p => p.Id == person.Id);
-            if (result != null)
-            {
-                try
-                {
-                    _context.Entry(result).CurrentValues.SetValues(person);
-                    _context.SaveChanges();
-
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Error" + e.Message);
-                }
-            }
-            return person;
+            return _repository.Update(person);
+           
         }
+
         public void Delete(long id)
         {
-            var result = _context.Persons.SingleOrDefault(p => p.Id == id);
-            if (result != null)
-            {
-                try
-                {
-                    //remove por Id mas poderiamos simplesmente remover passando person
-                    _context.Persons.Remove(result);
-                    _context.SaveChanges();
-
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Error" + e.Message);
-                }
-            }
+            _repository.Delete(id);
         }
         
     }
