@@ -44,7 +44,7 @@ namespace RestWithAspNet.Repository.Implementations
         public Person Update(Person person)
         {
             bool exists = _context.Persons.Any(p => p.Id == person.Id);
-            if (!exists) return new Person();
+            if (!exists) return null;
             //quando o id do banco de dados for igual o id do obj vamos buscar na base e armazenar em var
             var result = _context.Persons.SingleOrDefault(p => p.Id == person.Id);
             if (result != null)
