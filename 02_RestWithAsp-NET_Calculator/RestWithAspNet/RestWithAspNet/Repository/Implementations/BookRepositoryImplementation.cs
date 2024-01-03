@@ -1,52 +1,50 @@
 ﻿using RestWithAspNet.Data;
 using RestWithAspNet.Model;
-using System;
-using System.Security.Cryptography;
 
 namespace RestWithAspNet.Repository.Implementations
 {
-    public class PersonRepositoryImplementation : IPersonRepository
+    public class BookRepositoryImplementation : IBookRepository
     {
-
         private MysqlContext _context;
 
-        public PersonRepositoryImplementation(MysqlContext context) 
+        public BookRepositoryImplementation(MysqlContext context)
         {
             _context = context;
         }
 
-        public List<Person> FindAll()
+        public List<Book> FindAll()
         {
             //por questões de legibilidade ficará "persons"
-            return _context.Persons.ToList();
+            return _context.Books.ToList();
         }
-        public Person FindById(long id)
+        public Book FindById(long id)
         {
 
             //logica para puxar do banco de dados
-            return _context.Persons.SingleOrDefault(p => p.Id == id);
+            return _context.Books.SingleOrDefault(p => p.Id == id);
 
         }
 
-        public Person Create(Person person)
+        public Book Create(Book book)
         {
             try
             {
-                _context.Add(person);
+                _context.Add(book);
                 _context.SaveChanges();
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception("Error" + e.Message);
             }
-            return person;
+            return book;
         }
-        public Person Update(Person book)
+        public Book Update(Book book)
         {
             bool exists = _context.Persons.Any(p => p.Id == book.Id);
             if (!exists) return null;
             //quando o id do banco de dados for igual o id do obj vamos buscar na base e armazenar em var
-            var result = _context.Persons.SingleOrDefault(p => p.Id == book.Id);
+            var result = _context.Books.SingleOrDefault(p => p.Id == book.Id);
             if (result != null)
             {
                 try
@@ -84,6 +82,6 @@ namespace RestWithAspNet.Repository.Implementations
         {
             return _context.Persons.Any(p => p.Id.Equals(id));
         }
-        
+
     }
 }
