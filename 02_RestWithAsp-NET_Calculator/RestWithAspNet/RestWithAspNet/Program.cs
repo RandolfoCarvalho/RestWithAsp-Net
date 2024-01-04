@@ -3,7 +3,6 @@ using RestWithAspNet.Data;
 using RestWithAspNet.Business;
 using RestWithAspNet.Business.Implementations;
 using RestWithAspNet.Repository;
-using RestWithAspNet.Repository.Implementations;
 using MySqlConnector;
 using EvolveDb;
 using Serilog;
@@ -30,7 +29,6 @@ if(builder.Environment.IsDevelopment())
 //indejação de dependencia
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 builder.Services.AddApiVersioning();
-builder.Services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 

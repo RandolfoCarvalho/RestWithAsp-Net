@@ -1,17 +1,16 @@
 ﻿using RestWithAspNet.Data;
 using RestWithAspNet.Model;
-using RestWithAspNet.Repository;
-using System;
-using System.Security.Cryptography;
+using RestWithAspNet.Repository.Generic;
+
 
 namespace RestWithAspNet.Business.Implementations
 {
     public class PersonBusinessImplementation : IPersonBusiness
     {
 
-        private readonly IPersonRepository _repository;
+        private readonly IRepository<Person> _repository;
 
-        public PersonBusinessImplementation(IPersonRepository repository) 
+        public PersonBusinessImplementation(IRepository<Person> repository) 
         {
             _repository = repository;
         }
