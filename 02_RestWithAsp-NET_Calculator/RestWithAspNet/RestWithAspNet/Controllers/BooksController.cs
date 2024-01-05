@@ -4,6 +4,7 @@ using RestWithAspNet.Model;
 using RestWithAspNet.Business;
 using RestWithAspNet.Model;
 using Asp.Versioning;
+using RestWithAspNet.Data.VO;
 
 namespace RestWithAspNet.Controllers
 {
@@ -49,16 +50,16 @@ namespace RestWithAspNet.Controllers
         //Mapeia as requisições POST para http://localhost:{porta}/api/books/v1/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPost("v1")]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookVO book)
         {
-            if (book == null) return BadRequest();
+            if (book == null) return BadRequest("Nao é possivel");
             return new ObjectResult(_bookBusiness.Create(book));
         }
 
         //Mapeia as requisições PUT para http://localhost:{porta}/api/books/v1/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPut]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
             var updatedBook = _bookBusiness.Update(book);
