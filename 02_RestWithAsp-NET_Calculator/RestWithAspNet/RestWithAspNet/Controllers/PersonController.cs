@@ -14,7 +14,7 @@ namespace RestWithAspNet.Controllers
         private readonly ILogger<PersonController> _logger;
         private readonly IPersonBusiness _personBusiness;
 
-
+        //injecao de dependencias
         public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
         {
             _logger = logger;
@@ -51,6 +51,7 @@ namespace RestWithAspNet.Controllers
         }
         [HttpPut]
 
+        //recebe do corpo da requisicao
         public IActionResult Put([FromBody] PersonVO person)
         {
 
