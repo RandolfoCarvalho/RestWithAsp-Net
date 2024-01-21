@@ -2,11 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using RestWithAspNet.Data;
 using RestWithAspNet.Business;
 using RestWithAspNet.Business.Implementations;
-using RestWithAspNet.Repository;
 using MySqlConnector;
 using EvolveDb;
 using Serilog;
-using RestWithAspNet.Repository;
 using RestWithAspNet.Repository.Generic;
 using Microsoft.Net.Http.Headers;
 

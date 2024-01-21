@@ -86,3 +86,4 @@ C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\Re
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\System.Text.Encodings.Web.dll
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\System.Text.Json.dll
 C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\bin\Debug\net7.0\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll
+C:\temp\projetos\RestWithAsp-NET\02_RestWithAsp-NET_Calculator\RestWithAspNet\RestWithAspNet\obj\Debug\net7.0\RestWithAspNet.sourcelink.json

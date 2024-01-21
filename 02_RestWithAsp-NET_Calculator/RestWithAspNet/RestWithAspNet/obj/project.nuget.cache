@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/cbDkLo7fxMnSGcUbzTZT1PTgZcxiQhuccW8A8biaxg/12v5JXeX8b1lPRI/agze0u12WFPRgdyqwSj0WbLw3w==",
+  "dgSpecHash": "pz1vvAc2Dyi2zKIAJMxEBIZ/Gnt9XBDA9H7djj1rS01+PgMxHRbiFzSiHL243RghnvdwFLEZJK51d4WQv1wL0g==",
   "success": true,
   "projectFilePath": "C:\\temp\\projetos\\RestWithAsp-NET\\02_RestWithAsp-NET_Calculator\\RestWithAspNet\\RestWithAspNet\\RestWithAspNet.csproj",
   "expectedPackageFiles": [
@@ -39,7 +39,11 @@
     "C:\\Users\\rando\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512",
     "C:\\Users\\rando\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.0\\system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "C:\\Users\\rando\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
-    "C:\\Users\\rando\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512"
+    "C:\\Users\\rando\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
+    "C:\\Users\\rando\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\rando\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\rando\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\rando\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }
