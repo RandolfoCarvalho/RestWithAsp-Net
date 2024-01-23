@@ -7,6 +7,9 @@ using EvolveDb;
 using Serilog;
 using RestWithAspNet.Repository.Generic;
 using Microsoft.Net.Http.Headers;
+using RestWithAspNet.Hypermedia.Filters;
+using RestWithAspNet.Hypermedia.Enricher;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,11 @@ if(builder.Environment.IsDevelopment())
 {
     MigrateDataBase(connection);
 }
+
+var filterOptions = new HyperMediaFilterOptions();
+filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
+builder.Services.AddSingleton(filterOptions);
 
 //indejação de dependencia
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
@@ -44,6 +52,7 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
 app.Run();
 
 void MigrateDataBase(string? connection)

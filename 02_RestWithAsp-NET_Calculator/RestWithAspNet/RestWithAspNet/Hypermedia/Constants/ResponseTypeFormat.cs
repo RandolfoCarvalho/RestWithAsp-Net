@@ -1,6 +1,6 @@
 ﻿namespace RestWithAspNet.Hypermedia.Constants
 {
-    public class RelationTypeFormat
+    public class ResponseTypeFormat
     {
         public const string DefaultGet = "application/json";
         public const string DefaultPost = "application/json";

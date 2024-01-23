@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestWithAspNet.Model;
 using RestWithAspNet.Business;
 using RestWithAspNet.Data.VO;
+using RestWithAspNet.Hypermedia.Filters;
 
 namespace RestWithAspNet.Controllers
 {
@@ -22,6 +23,7 @@ namespace RestWithAspNet.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_personBusiness.FindAll());
@@ -29,6 +31,7 @@ namespace RestWithAspNet.Controllers
         }
         //O id será recebido na requisição, assim diferenciando as duas funções Get
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             var person = _personBusiness.FindById(id);
@@ -39,6 +42,7 @@ namespace RestWithAspNet.Controllers
             return Ok(person);
         }
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         //converte o que vier no body em um tipo "Person"
         public IActionResult Post([FromBody] PersonVO person)
         {
@@ -50,7 +54,7 @@ namespace RestWithAspNet.Controllers
             return Ok(_personBusiness.Create(person));
         }
         [HttpPut]
-
+        [TypeFilter(typeof(HyperMediaFilter))]
         //recebe do corpo da requisicao
         public IActionResult Put([FromBody] PersonVO person)
         {
@@ -62,6 +66,7 @@ namespace RestWithAspNet.Controllers
             return Ok(_personBusiness.Update(person));
         }
         [HttpDelete("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(long id)
         {
             _personBusiness.Delete(id);
