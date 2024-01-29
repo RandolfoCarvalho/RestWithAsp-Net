@@ -10,6 +10,8 @@ using Microsoft.Net.Http.Headers;
 using RestWithAspNet.Hypermedia.Filters;
 using RestWithAspNet.Hypermedia.Enricher;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +48,22 @@ builder.Services.AddMvc(options =>
     options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
 }).AddXmlSerializerFormatters();
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1",
+        new OpenApiInfo
+        {
+            Title = "Rest API with Azure and Docker",
+            Version = "v1",
+            Description = "API RESTFul developed in course 'Rest API with Azure and Docker'",
+            Contact = new OpenApiContact
+            {
+                Name = "Randolfo Carvalho",
+                Url = new Uri("https://github.com/RandolfoCarvalho")
+            }
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,6 +71,16 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json",
+        "Rest API with Azure and Docker");
+});
+var option = new RewriteOptions();
+option.AddRedirect("^$", "swagger");
+app.UseRewriter(option);
+
 app.Run();
 
 void MigrateDataBase(string? connection)
