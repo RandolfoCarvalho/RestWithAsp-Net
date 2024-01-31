@@ -23,6 +23,10 @@ namespace RestWithAspNet.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(List<PersonVO>) )]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
@@ -31,6 +35,10 @@ namespace RestWithAspNet.Controllers
         }
         //O id será recebido na requisição, assim diferenciando as duas funções Get
         [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
@@ -42,6 +50,9 @@ namespace RestWithAspNet.Controllers
             return Ok(person);
         }
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(PersonVO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         //converte o que vier no body em um tipo "Person"
         public IActionResult Post([FromBody] PersonVO person)
@@ -54,6 +65,10 @@ namespace RestWithAspNet.Controllers
             return Ok(_personBusiness.Create(person));
         }
         [HttpPut]
+        [ProducesResponseType(200, Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         //recebe do corpo da requisicao
         public IActionResult Put([FromBody] PersonVO person)
@@ -66,6 +81,9 @@ namespace RestWithAspNet.Controllers
             return Ok(_personBusiness.Update(person));
         }
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(long id)
         {
