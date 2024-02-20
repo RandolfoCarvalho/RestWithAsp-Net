@@ -1,6 +1,7 @@
 ﻿using RestWithAspNet.Data;
 using RestWithAspNet.Data.VO;
 using RestWithAspNet.Model;
+using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -19,6 +20,30 @@ namespace RestWithAspNet.Repository
         {
             var pass = ComputeHash(user.Password, new SHA256CryptoServiceProvider());
             return _context.Users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == pass));
+        }
+
+        public User RefreshUserInfo(User user)
+        {
+            if (!_context.Users.Any(u => u.Id.Equals(user.Id))) return null;
+            var result = _context.Users.SingleOrDefault(p => p.Id == user.Id);
+            if (result != null)
+            {
+                try
+                {
+                    _context.Entry(result).CurrentValues.SetValues(user);
+                    _context.SaveChanges();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
+            return result;
+        }
+        public bool Exists(long id)
+        {
+            return _context.Users.Any(p => p.Id.Equals(id));
         }
 
         //encriptção de senha
