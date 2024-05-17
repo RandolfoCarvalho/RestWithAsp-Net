@@ -33,11 +33,12 @@ namespace RestWithAspNet.Business.Implementations
             var accessToken = _tokenService.GenerateAcessToken(claims);
             var refreshToken = _tokenService.GenerateRefreshToken();
 
+            _repository.RefreshUserInfo(user);
+
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(_configuration.DaysToExpire);
             DateTime createDate = DateTime.Now;
             DateTime expirationDate = createDate.AddMinutes(_configuration.Minutes);
-
 
             return new TokenVO
                 (
