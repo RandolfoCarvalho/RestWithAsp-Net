@@ -6,6 +6,7 @@ using RestWithAspNet.Model;
 using Asp.Versioning;
 using RestWithAspNet.Data.VO;
 using RestWithAspNet.Hypermedia.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestWithAspNet.Controllers
 {
@@ -16,6 +17,7 @@ namespace RestWithAspNet.Controllers
     */
     [ApiVersion("1.0")]
     [ApiController]
+    [Authorize("Bearer")]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class BooksController : Controller
     {

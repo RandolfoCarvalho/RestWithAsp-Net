@@ -4,11 +4,13 @@ using RestWithAspNet.Model;
 using RestWithAspNet.Business;
 using RestWithAspNet.Data.VO;
 using RestWithAspNet.Hypermedia.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestWithAspNet.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
+    [Authorize("Bearer")]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonController : ControllerBase
     {

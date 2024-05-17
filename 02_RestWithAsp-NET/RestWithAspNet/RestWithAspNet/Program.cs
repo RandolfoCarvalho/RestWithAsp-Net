@@ -31,13 +31,13 @@ new ConfigureFromConfigurationOptions<TokenConfiguration>(
 
     )
     .Configure(tokenConfigurations);
+
+// Configuração da autenticação JWT
 builder.Services.AddSingleton(tokenConfigurations);
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-
-
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
     .AddJwtBearer(options =>
     {
