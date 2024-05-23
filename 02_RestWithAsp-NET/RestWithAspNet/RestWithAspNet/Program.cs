@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+Ôªøusing Microsoft.EntityFrameworkCore;
 using RestWithAspNet.Data;
 using RestWithAspNet.Business;
 using RestWithAspNet.Business.Implementations;
@@ -32,7 +32,7 @@ new ConfigureFromConfigurationOptions<TokenConfiguration>(
     )
     .Configure(tokenConfigurations);
 
-// ConfiguraÁ„o da autenticaÁ„o JWT
+// Configura√ß√£o da autentica√ß√£o JWT
 builder.Services.AddSingleton(tokenConfigurations);
 builder.Services.AddAuthentication(options =>
     {
@@ -47,7 +47,8 @@ builder.Services.AddAuthentication(options =>
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = tokenConfigurations.Audience,
+            ValidIssuer = tokenConfigurations.Issuer,
+            ValidAudience = tokenConfigurations.Audience,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfigurations.Secret))
         };
     });
@@ -58,9 +59,14 @@ builder.Services.AddAuthorization(auth =>
         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
         .RequireAuthenticatedUser().Build());
 });
-
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
+{
+    builder.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+}));
 builder.Services.AddControllers();
-//conex„o com o banco de dados
+//conex√£o com o banco de dados
 
 var connection = builder.Configuration["ConnectionStrings:DefaultConnection"];
 builder.Services.AddDbContext<MysqlContext>(options => options.UseMySql(connection, 
@@ -77,12 +83,12 @@ filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
 filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
 builder.Services.AddSingleton(filterOptions);
 
-//indejaÁ„o de dependencia
+//indeja√ß√£o de dependencia
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 builder.Services.AddApiVersioning();
 builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
-builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<ILoginBusiness, LoginBusinessImplementation>();
 
@@ -110,18 +116,12 @@ builder.Services.AddSwaggerGen(c =>
             }
         });
 });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 app.UseAuthorization();
-builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
-{
-    builder.AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader();
-}));
+
 app.MapControllers();
 app.UseCors();
 app.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");

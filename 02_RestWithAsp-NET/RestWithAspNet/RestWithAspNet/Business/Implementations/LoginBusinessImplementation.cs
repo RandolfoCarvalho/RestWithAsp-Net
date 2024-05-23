@@ -28,15 +28,15 @@ namespace RestWithAspNet.Business.Implementations
             var claims = new List<Claim>()
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                new Claim(JwtRegisteredClaimNames.Jti, user.UserName)
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };
             var accessToken = _tokenService.GenerateAcessToken(claims);
             var refreshToken = _tokenService.GenerateRefreshToken();
 
-            _repository.RefreshUserInfo(user);
-
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(_configuration.DaysToExpire);
+
+            _repository.RefreshUserInfo(user);
             DateTime createDate = DateTime.Now;
             DateTime expirationDate = createDate.AddMinutes(_configuration.Minutes);
 
