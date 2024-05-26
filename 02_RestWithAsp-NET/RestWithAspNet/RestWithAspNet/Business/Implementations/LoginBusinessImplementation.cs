@@ -39,7 +39,6 @@ namespace RestWithAspNet.Business.Implementations
             _repository.RefreshUserInfo(user);
             DateTime createDate = DateTime.Now;
             DateTime expirationDate = createDate.AddMinutes(_configuration.Minutes);
-
             return new TokenVO
                 (
                     true,
