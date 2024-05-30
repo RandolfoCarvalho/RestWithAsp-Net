@@ -59,10 +59,15 @@ namespace RestWithAspNet.Controllers
         public IActionResult Post([FromBody] BookVO book)
         {
             if (book == null) return BadRequest("Não é possível processar a requisição");
-            return new ObjectResult(_bookBusiness.Create(book));
+            var createdBook = _bookBusiness.Create(book);
+            if (createdBook == null) return BadRequest("Erro ao criar o livro");
+            return new ObjectResult(createdBook)
+            {
+                StatusCode = 201 // Retorna 201 Created
+            };
         }
 
-        //Mapeia as requisições PUT para http://localhost:{porta}/api/books/v1/
+        //Mapeia as requisições PUT para http://localhost:{porta}/api/books/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPut]
         [TypeFilter(typeof(HyperMediaFilter))]
