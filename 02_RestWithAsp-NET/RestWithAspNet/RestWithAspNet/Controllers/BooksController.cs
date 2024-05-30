@@ -58,7 +58,7 @@ namespace RestWithAspNet.Controllers
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] BookVO book)
         {
-            if (book == null) return BadRequest("Nao é possivel");
+            if (book == null) return BadRequest("Não é possível processar a requisição");
             return new ObjectResult(_bookBusiness.Create(book));
         }
 

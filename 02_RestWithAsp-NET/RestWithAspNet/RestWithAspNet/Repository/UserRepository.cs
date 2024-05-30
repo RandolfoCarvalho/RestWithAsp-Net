@@ -41,11 +41,16 @@ namespace RestWithAspNet.Repository
             }
             return result;
         }
+
+        public User ValidateCredentials(string userName)
+        {
+            return _context.Users.SingleOrDefault(u => u.UserName == userName);
+        }
+
         public bool Exists(long id)
         {
             return _context.Users.Any(p => p.Id.Equals(id));
         }
-
         //encriptção de senha
         private string ComputeHash(string input, SHA256CryptoServiceProvider algorithm)
         {
@@ -53,5 +58,7 @@ namespace RestWithAspNet.Repository
             Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
             return BitConverter.ToString(hashedBytes);
         }
+
+        
     }
 }
