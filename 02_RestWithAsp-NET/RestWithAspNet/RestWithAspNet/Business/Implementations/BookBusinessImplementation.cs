@@ -30,7 +30,7 @@ namespace RestWithAspNet.Business.Implementations
         public BookVO Create(BookVO book)
         {
             var bookEntity = _converter.Parse(book);
-            bookEntity = _repository.Update(bookEntity);
+            bookEntity = _repository.Create(bookEntity);
             return _converter.Parse(bookEntity);
         }
         public BookVO Update(BookVO book)
