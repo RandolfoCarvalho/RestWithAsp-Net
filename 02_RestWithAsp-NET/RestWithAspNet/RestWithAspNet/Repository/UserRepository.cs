@@ -46,7 +46,14 @@ namespace RestWithAspNet.Repository
         {
             return _context.Users.SingleOrDefault(u => u.UserName == userName);
         }
-
+        public bool RevokeToken(string userName)
+        {
+           var user = _context.Users.SingleOrDefault(u => u.UserName == userName);
+           if (user == null) return false;
+           user.RefreshToken = null;
+           _context.SaveChanges();
+           return true;
+        }
         public bool Exists(long id)
         {
             return _context.Users.Any(p => p.Id.Equals(id));
@@ -58,7 +65,5 @@ namespace RestWithAspNet.Repository
             Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
             return BitConverter.ToString(hashedBytes);
         }
-
-        
     }
 }

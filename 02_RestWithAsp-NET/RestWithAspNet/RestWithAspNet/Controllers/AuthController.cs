@@ -38,6 +38,17 @@ namespace RestWithAspNet.Controllers
             if (token == null) return BadRequest("Token is null");
             return Ok(token);
         }
+
+        [HttpGet]
+        [Route("revoke")]
+        [Authorize("Bearer")]
+        public IActionResult Revoke()
+        {
+            var userName = User.Identity.Name;
+            var result = _loginBusiness.RevokeToken(userName);
+            if (!result) return BadRequest("Invalid Client Request");
+            return NoContent();
+        }
     }
 }
 
