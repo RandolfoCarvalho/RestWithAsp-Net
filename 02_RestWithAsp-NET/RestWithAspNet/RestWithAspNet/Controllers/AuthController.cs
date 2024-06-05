@@ -35,10 +35,9 @@ namespace RestWithAspNet.Controllers
         {
             if (tokenVO == null) return BadRequest("Invalid Client request");
             var token = _loginBusiness.ValidateCredentials(tokenVO);
-            if (token == null) return BadRequest("Token is null");
+            if (token == null) return BadRequest("Invalid Client request");
             return Ok(token);
         }
-
         [HttpGet]
         [Route("revoke")]
         [Authorize("Bearer")]

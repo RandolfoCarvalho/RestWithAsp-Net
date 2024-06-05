@@ -1,4 +1,5 @@
-﻿using RestWithAspNet.Data;
+﻿using Microsoft.AspNetCore.Mvc.Formatters.Xml;
+using RestWithAspNet.Data;
 using RestWithAspNet.Data.VO;
 using RestWithAspNet.Model;
 using System.Data;
@@ -19,7 +20,9 @@ namespace RestWithAspNet.Repository
         public User ValidateCredentials(UserVO user)
         {
             var pass = ComputeHash(user.Password, new SHA256CryptoServiceProvider());
-            return _context.Users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == pass));
+            var result = _context.Users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == pass));
+            if (result == null) throw new Exception("O erro foi no primeiro");
+            return result;
         }
 
         public User RefreshUserInfo(User user)
@@ -44,12 +47,14 @@ namespace RestWithAspNet.Repository
 
         public User ValidateCredentials(string userName)
         {
-            return _context.Users.SingleOrDefault(u => u.UserName == userName);
+            var result = _context.Users.SingleOrDefault(u => (u.UserName == userName));
+            if (result == null) throw new Exception("Cannot convert user to string");
+            return result;
         }
         public bool RevokeToken(string userName)
         {
-           var user = _context.Users.SingleOrDefault(u => u.UserName == userName);
-           if (user == null) return false;
+           var user = _context.Users.SingleOrDefault(u => (u.UserName == userName));
+           if (user is null) return false;
            user.RefreshToken = null;
            _context.SaveChanges();
            return true;
