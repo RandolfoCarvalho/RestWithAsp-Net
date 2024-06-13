@@ -1,14 +1,11 @@
 ﻿using RestWithAspNet.Data.VO;
 using RestWithAspNet.Model;
+using RestWithAspNet.Repository.Generic;
 
 namespace RestWithAspNet.Repository
 {
-    public interface IUserRepository
+    public interface IPersonRepository : IRepository<Person>
     {
-        User ValidateCredentials(UserVO user);
-        User ValidateCredentials(string userName);
-
-        bool RevokeToken(string userName);
-        User RefreshUserInfo(User info);
+        Person Disable(int id);
     }
 }
