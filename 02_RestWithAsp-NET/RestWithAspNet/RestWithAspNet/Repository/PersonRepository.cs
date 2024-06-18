@@ -15,17 +15,16 @@ namespace RestWithAspNet.Repository
         {
             if (_context.Persons.Any(p => p.Id.Equals(id))) return null;
             var user = _context.Persons.FirstOrDefault(p => p.Id.Equals(id));
-            if(user != null)
-            {
-                //user.Enabled = false;
-            }
+            if (user == null) throw new Exception("O erro foi em PersonRepository bro");
+            user.Enabled = false;
             try
             {
                 _context.Entry(user).CurrentValues.SetValues(user);
+                _context.SaveChanges();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("nao deu bom aqui" + ex.Message);
             }
             return user;
         }

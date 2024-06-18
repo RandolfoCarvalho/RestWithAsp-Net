@@ -21,6 +21,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using RestWithAspNet.Hypermedia.Abstract;
+using RestWithAspNet.Hypermedia;
+using RestWithAspNet.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,8 +92,11 @@ builder.Services.AddApiVersioning();
 builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<ILoginBusiness, LoginBusinessImplementation>();
+builder.Services.AddScoped<IResponseEnricher, PersonEnricher>();
+builder.Services.AddScoped<HyperMediaFilter>();
 
 
 builder.Services.AddMvc(options =>

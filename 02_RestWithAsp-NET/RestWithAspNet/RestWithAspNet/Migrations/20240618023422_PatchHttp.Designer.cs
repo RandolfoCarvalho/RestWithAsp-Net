@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestWithAspNet.Data;
 
@@ -10,9 +11,11 @@ using RestWithAspNet.Data;
 namespace RestWithAspNet.Migrations
 {
     [DbContext(typeof(MysqlContext))]
-    partial class MysqlContextModelSnapshot : ModelSnapshot
+    [Migration("20240618023422_PatchHttp")]
+    partial class PatchHttp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

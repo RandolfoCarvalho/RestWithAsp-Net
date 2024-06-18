@@ -12,20 +12,25 @@ namespace RestWithAspNet.Hypermedia
         {
 
         }
-        public bool canEnrich(Type contentType)
+        public virtual bool CanEnrich(Type contentType)
         {
             return contentType == typeof(T) || contentType == typeof(List<T>);
         }
+
         protected abstract Task EnrichModel(T content, IUrlHelper urlHelper);
+
         bool IResponseEnricher.canEnrich(ResultExecutingContext response)
         {
-            if (response.Result is OkObjectResult okObjectResult)
+            if (response?.Result is OkObjectResult okObjectResult && okObjectResult?.Value != null)
             {
-                return canEnrich(okObjectResult.Value.GetType());
+                var valueType = okObjectResult.Value.GetType();
+                return CanEnrich(valueType);
+            } else
+            {
+                throw new Exception("Erro ocorrido em enricher");
             }
             return false;
         }
-
         public async Task Enrich(ResultExecutingContext response)
         {
             var urlHelper = new UrlHelperFactory().GetUrlHelper(response);
