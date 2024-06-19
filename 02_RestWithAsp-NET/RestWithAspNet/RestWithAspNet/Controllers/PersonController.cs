@@ -91,6 +91,10 @@ namespace RestWithAspNet.Controllers
         public IActionResult Patch(int id)
         {
             var person = _personBusiness.Disable(id);
+            if (person == null)
+            {
+                return BadRequest("Usuario nullo");
+            }
             return Ok(person);
         }
         [HttpDelete("{id}")]

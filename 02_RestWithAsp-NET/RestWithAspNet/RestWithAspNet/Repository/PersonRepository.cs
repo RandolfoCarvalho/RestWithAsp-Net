@@ -7,15 +7,14 @@ namespace RestWithAspNet.Repository
 {
     public class PersonRepository : GenericRepository<Person>, IPersonRepository
     {
-        public PersonRepository(MysqlContext context) : base(context) 
+        public PersonRepository(MysqlContext Context) : base(Context) 
         {
 
         }
         public Person Disable(int id)
         {
-            if (_context.Persons.Any(p => p.Id.Equals(id))) return null;
             var user = _context.Persons.FirstOrDefault(p => p.Id.Equals(id));
-            if (user == null) throw new Exception("O erro foi em PersonRepository bro");
+            if (user == null);
             user.Enabled = false;
             try
             {
@@ -24,7 +23,7 @@ namespace RestWithAspNet.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception("nao deu bom aqui" + ex.Message);
+                throw new Exception("Erro" + ex.Message);
             }
             return user;
         }
