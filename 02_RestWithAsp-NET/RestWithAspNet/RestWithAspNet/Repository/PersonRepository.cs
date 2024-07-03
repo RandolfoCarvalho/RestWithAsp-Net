@@ -30,19 +30,19 @@ namespace RestWithAspNet.Repository
 
         public List<Person> FindByName(string firstName, string secondName)
         {
-            if(!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(firstName))
+            if(!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(secondName))
             {
                 return _context.Persons.Where(
                 p => p.FirstName.Contains(firstName)
                 && p.LastName.Contains(secondName)).ToList();
             } 
-            else if (string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(firstName))
+            else if (string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(secondName))
             {
                 return _context.Persons.Where(
                 p => p.FirstName.Contains(firstName)
                 && p.LastName.Contains(secondName)).ToList();
             }
-            else if (!string.IsNullOrWhiteSpace(firstName) && string.IsNullOrWhiteSpace(firstName))
+            else if (!string.IsNullOrWhiteSpace(firstName) && string.IsNullOrWhiteSpace(secondName))
             {
                 return _context.Persons.Where(
                 p => p.FirstName.Contains(firstName)

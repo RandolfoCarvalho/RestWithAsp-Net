@@ -26,12 +26,13 @@ namespace RestWithAspNet.Business.Implementations
         }
         public PersonVO FindById(long id)
         {
-
             //logica para puxar do banco de dados
             return _converter.Parse( _repository.FindById(id));
-
         }
-
+        public List<PersonVO> FindByName(string firstName, string secondName)
+        {
+            return _converter.Parse(_repository.FindByName(firstName, secondName));
+        }
         public PersonVO Create(PersonVO person)
         {
             var personEntity = _converter.Parse(person);
@@ -55,6 +56,5 @@ namespace RestWithAspNet.Business.Implementations
         {
             _repository.Delete(id);
         }
-        
     }
 }
