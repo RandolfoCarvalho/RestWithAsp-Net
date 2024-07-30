@@ -90,6 +90,7 @@ namespace RestWithAspNet.Repository.Generic
             return dataset.Any(p => p.Id.Equals(id));
         }
 
+        /*Executa uma consulta SQL bruta usando o Entity Framework Core e mapeia os resultados para uma lista de objetos do tipo */
         public List<T> FindWithPagedSearch(string query)
         {
             return dataset.FromSqlRaw<T>(query).ToList();
@@ -104,6 +105,7 @@ namespace RestWithAspNet.Repository.Generic
                 using(var command = connection.CreateCommand())
                 {
                     command.CommandText = query;
+                    /*xecuta a consulta SQL e retorna a primeira coluna da primeira linha no conjunto de resultados retornado pela consulta*/
                     result = command.ExecuteScalar().ToString();
                 }
             }
